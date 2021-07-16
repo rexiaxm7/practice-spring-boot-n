@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>ToDo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <header class="mb-5">
+    <nav class="navbar navbar-light bg-light">
+      <a href="/" class="navbar-brand">ToDo</a>
+    </nav>
+  </header>
+  <main>
+    <div class="todo-container">
+
+      <h1 class="h3 mb-4">タスクを追加する</h1>
+
+      <div class="card">
+        <div class="card-body">
+          <form action="/user_update" th:object="${updateForm}"　method="post">
+          <input type="hidden" name="id" th:value="${user.id}" />
+            <div class="form-group">
+              <label for="title">名前</label>
+              <input class="form-control" type="text" th:value="${user.name}" name="name"/>
+            </div>
+           <div class="form-group">
+              <label for="title">メールアドレス</label>
+              <input class="form-control" type="text" th:value="${user.login_id}" name="login_id"/>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="/user_list" class="btn btn-outline-primary">戻る</a>
+              <button class="btn btn-primary" type="submit">編集する</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

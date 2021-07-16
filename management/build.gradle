@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+	id 'eclipse-wtp'
+	id 'idea'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation'org.springframework.security:spring-security-web'
+    implementation'org.springframework.security:spring-security-config'
+    implementation'org.springframework.security:spring-security-test'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.springframework.boot:spring-boot-starter-aop' 
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'  
+    
+   
+}
+
+configurations.all {
+  
+    exclude group: 'ch.qos.logback', module: 'logback-classic' // = SLF4J > Log4J 1.x. (SLF4J Side)
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+ 
+}
+
+
+
+test {
+	useJUnitPlatform()
+	
+}

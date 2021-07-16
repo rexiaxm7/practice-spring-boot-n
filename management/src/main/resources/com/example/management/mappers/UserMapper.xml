@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.management.mappers.UserMapper">
+	<!-- 結果と結果を受け取るクラスの紐づけ -->
+	<resultMap id="userResultMap"
+		type="com.example.management.domains.model.User">
+		<result property="id" column="id" />
+		<result property="login_id" column="login_id" />
+		<result property="name" column="name" />
+		<result property="password" column="password" />
+		<result property="role" column="role" />
+		<result property="delete_flg" column="delete_flg" />
+		<result property="registration_date" column="registration_date" />
+		<result property="expiration_date" column="expiration_date" />
+	</resultMap>
+	<!-- SQL -->
+	<insert id="add"
+		parameterType="com.example.management.domains.model.User">
+		INSERT INTO user_info(login_id, name, password, role,
+		delete_flg, registration_date, expiration_date)
+		VALUES
+		(#{login_id},#{name},#{password},#{role},0,#{registration_date},#{expiration_date});
+	</insert>
+	<select id="findById" resultMap="userResultMap">
+		SELECT * FROM user_info
+		WHERE id
+		= #{id};
+	</select>
+	<update id="update"
+		parameterType="com.example.management.domains.model.User">
+		UPDATE user_info SET login_id = #{login_id} ,name =
+		#{name} WHERE id = #{id};
+	</update>
+</mapper>

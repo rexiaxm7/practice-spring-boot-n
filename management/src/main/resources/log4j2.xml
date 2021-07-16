@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<!-- コンソールログ出力設定 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} -
+					%msg%n</pattern>
+			</PatternLayout>
+		</Console>
+		<!-- ログファイル出力設定 -->
+		<RollingFile name="Defoult_Log"
+			fileName="C:/log/Defoult_Log.log"
+			filePattern="C:/log/Defoult_LogBAK-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} -
+					%msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		<RollingFile name="Error_Log"
+			fileName="C:/log/Error_Log.log"
+			filePattern="C:/log/Error_LogBAK-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} -
+					%msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		<RollingFile name="Login_Success"
+			fileName="C:/log/Login_Success.log"
+			filePattern="C:/log/Login_SuccessBAK-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} -
+					%msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<!-- コンソールとファイルにログ出力をするための設定 -->
+		<Logger name="com.example.management" level="error"
+			additivity="false">
+			<AppenderRef ref="Console" level="error"/>
+			<AppenderRef ref="Error_Log" level="error"/>
+		</Logger>
+		<Logger name="com.example.management.controllers" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Defoult_Log" />
+			<AppenderRef ref="Login_Success" level="fatal"/>
+		</Logger>
+		<Logger name="com.example.management.mappers" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Defoult_Log" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Defoult_Log" />
+		</Root>
+	</Loggers>
+</Configuration>
