@@ -30,12 +30,14 @@ import org.apache.logging.log4j.Logger;
 public class TaskController {
 
 	private Logger logger = LogManager.getLogger();
-
+	private final TaskService taskService;
+	private final TaskService2 taskService2;
+	
 	@Autowired
-	private TaskService taskService;
-
-	@Autowired
-	private TaskService2 taskService2;
+    public TaskController(TaskService2 taskService2,TaskService taskService) {
+        this.taskService = taskService;
+        this.taskService2 = taskService2;
+    }
 
 	@GetMapping("/list")
 	public String index(@AuthenticationPrincipal AccountDetails accountDetails, Model model,
